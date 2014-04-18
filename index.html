@@ -1,0 +1,25 @@
+<!doctype html>
+<meta charset="utf8">
+<title>Kanzilla</title>
+<link rel="stylesheet" href="style.css">
+<body class="flex-container">
+
+<article id="column-template" class="column-separator hidden">
+    <h1 class="flex-container item dont-shrink column-header">
+        <span class="js-title title"></span>
+        <span class="js-bug-count"></span>
+    </h1>
+    <div class="js-bugs-container scrollable">
+    </div>
+</article>
+<article id="bug-template" class="bug item hidden">
+    <p>
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id="></a>
+    </p>
+</article>
+
+</body>
+<script src="bugzilla.js"></script>
+<script src="column.js"></script>
+<script src="bug.js"></script>
+<script src="index.js"></script>
