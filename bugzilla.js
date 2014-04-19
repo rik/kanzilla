@@ -1,3 +1,4 @@
+/* global Overlay */
 (function(exports) {
     'use strict';
 
@@ -12,6 +13,7 @@
         var promise = new Promise(function(resolve) {
             callback = function(evt) {
                 resolve(evt.target.response);
+                Overlay.hide();
             };
         });
         xhr.addEventListener('load', callback);
@@ -19,6 +21,7 @@
         xhr.setRequestHeader('Accept', 'application/json');
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send();
+        Overlay.show();
 
         return promise.then(JSON.parse).then(function(root) {
             return root.bugs;

@@ -82,3 +82,33 @@ a {
     transition: background-color 1s ease;
     background-color: hsl(0, 50%, 75%);
 }
+
+.overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    align-items: center;
+    -webkit-align-items: center;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@-webkit-keyframes pulse {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.pulse {
+    animation: pulse 2.5s infinite alternate linear;
+    -webkit-animation: pulse 2.5s infinite alternate linear;
+}
