@@ -1,16 +1,20 @@
-KANBAN
+This dashboard is a Kanban visualisation of Bugzilla bugs. It takes all the direct blockers (first level) of a bug (called master bug) and displays in a Kanban fashion.
 
-Pas de scroll vertical
-Inspecteur latéral
-Bloqué via triangle rouge
-Vignette owner?
+# How to use
+## Columns
+Three columns are automatically created:
 
-Qui est surchargé?
-Quel bug n'est pas owné?
-Filté par owner
-Qui est en review?
+* Done: all RESOLVED VERIFIED bugs
+* QA: all other RESOLVED bugs
+* Backlog: All opened bugs without a valid column tag
 
-http://purecss.io/grids/
-http://mrcote.info/blog/2014/04/04/bugzfeed-bugzilla-push-notifications/
-https://derekries.github.io/kanbanzilla/#/board/component/API
-http://buggy.peterbe.com/
+To create other columns, add a tag in the first comment of the master bug in the form `kanban-n-label`. `n` is the position of the column, `label` is the name of that column.
+
+## Bugs
+To put a bug in a column, add a tag to the first comment of that bug in the form `kanban-label`.
+
+To mark a bug as blocked, just add a `blocked`
+
+# Future
+This is a read-only tool for now. Once we tweak the logic to fit our needs, we will add some write capabilities.
+Feel free to open issues for features you'd like to see.

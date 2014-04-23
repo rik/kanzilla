@@ -176,3 +176,9 @@ a {
     animation: pulse 2.5s infinite alternate linear;
     -webkit-animation: pulse 2.5s infinite alternate linear;
 }
+
+.help {
+    position: fixed;
+    right: 5px;
+    bottom: 5px;
+}
