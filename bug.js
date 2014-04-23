@@ -26,7 +26,7 @@
                 Bugzilla.fetch_comments(that.raw_bug.id).then(function(bug) {
                     that.tags = bug[Object.keys(bug)[0]].comments[0].tags;
                     if (that.tags.indexOf('blocked') !== -1) {
-                        that.node.classList.add('blocked');
+                        that.node.classList.add('bug--blocked');
                     }
 
                     that.column = 'Backlog';

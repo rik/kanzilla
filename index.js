@@ -4,7 +4,25 @@
   'use strict';
 
     function init() {
-        var main_bug = parseInt(location.search.substr(1), 10);
+        var main_bug = location.search.substr(1);
+        if (!main_bug) {
+            var form = document.querySelector('form');
+            form.addEventListener('submit', function(evt) {
+                evt.preventDefault();
+                document.getElementById('form-overlay').classList.add('hidden');
+                main_bug = document.getElementById('bug-input').value;
+                history.replaceState('', null, '?' + main_bug);
+                init_for_bug(main_bug);
+            });
+        } else {
+            document.getElementById('form-overlay').classList.add('hidden');
+            init_for_bug(main_bug);
+        }
+    }
+
+    function init_for_bug(main_bug_string) {
+        var main_bug = parseInt(main_bug_string, 10);
+
         var depends_on = Bugzilla.fetch_dependencies_of(main_bug);
 
         depends_on.then(function(bugs) {

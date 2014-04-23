@@ -2,28 +2,37 @@
 <meta charset="utf8">
 <title>Kanzilla</title>
 <link rel="stylesheet" href="style.css">
-<body class="flex-container">
+<body class="grid">
 
-<article id="column-template" class="column-separator hidden">
-    <h1 class="flex-container item dont-shrink column-header">
-        <span class="js-title title"></span>
+<article id="column-template" class="grid__grow grid-column kb-column hidden">
+    <h1 class="grid kb-column__item kb-column__header grid__no-shrink">
+        <span class="js-title kb-column__title grid__grow"></span>
         <span class="js-bug-count"></span>
     </h1>
-    <div class="js-bugs-container scrollable">
+    <div class="js-bugs-container grid__grow kb-column__border scrollable">
     </div>
 </article>
-<article id="bug-template" class="bug item hidden">
+<article id="bug-template" class="bug kb-column__item hidden">
     <p>
         <a href="https://bugzilla.mozilla.org/show_bug.cgi?id="></a>
     </p>
 </article>
 
-<div id="overlay" class="overlay hidden">
+<div id="form-overlay" class="overlay center">
+    <form>
+        <label for="bug-input">Enter a bug id:</label>
+        <input id="bug-input" name="bugnumber">
+        <input type="submit">
+    </form>
+</div>
+<div id="overlay" class="overlay center hidden">
     <p class="pulse">Loading…</p>
 </div>
-</body>
+
 <script src="overlay.js"></script>
 <script src="bugzilla.js"></script>
 <script src="column.js"></script>
 <script src="bug.js"></script>
 <script src="index.js"></script>
+
+</body>

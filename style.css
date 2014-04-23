@@ -1,4 +1,5 @@
-/* html5doctor.com Reset v1.6.1 - http://cssreset.com */
+/* #Reset and general elements
+html5doctor.com Reset v1.6.1 - http://cssreset.com */
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}nav ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}a{margin:0;padding:0;font-size:100%;vertical-align:baseline;background:transparent}ins{background-color:#ff9;color:#000;text-decoration:none}mark{background-color:#ff9;color:#000;font-style:italic;font-weight:bold}del{text-decoration:line-through}abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help}table{border-collapse:collapse;border-spacing:0}hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0}input,select{vertical-align:middle}
 
 html, body {
@@ -14,75 +15,125 @@ a {
     display: none !important;
 }
 
-/* Foo
+/* #Grids
 
-    <div class="flex-container">
-        <p>Foo</p>
-        <p>Bar</p>
+    <div class="grid">
+        <p class="grid__grow">Backlog</p>
+        <p class="grid__grow">In progress</p>
+        <p class="grid__grow">Done</p>
     </div>
 */
-.flex-container {
+.grid {
     display: flex;
     display: -webkit-flex;
     flex-direction: row;
     -webkit-flex-direction: row;
 }
 
-/* Bar
+.grid__grow {
+    flex-grow: 1;
+    -webkit-flex-grow: 1;
+}
 
-    <div class="flex-container">
-        <p class="column-separator">Foo</p>
-        <p class="column-separator">Bar</p>
+.grid__no-shrink {
+    flex-shrink: 0;
+    -webkit-flex-shrink: 0;
+}
+
+/* Column
+
+    <div class="grid-column">
+        <div class="grid__grow">Foo</div>
+        <div class="grid__grow">Foo</div>
+        <div class="grid__grow">Foo</div>
     </div>
 */
-.column-separator {
-    min-width: 200px;
-    height: 100%;
+.grid-column {
     display: flex;
     display: -webkit-flex;
     flex-direction: column;
     -webkit-flex-direction: column;
+    height: 100%;
 }
-.column-separator:last-child .scrollable,
-.column-separator:last-child .column-header {
-    border-right: none;
+
+/* #Kanban
+
+   Column
+
+    <div class="grid">
+        <p class="kb-column grid__grow">Foo</p>
+        <p class="kb-column grid__grow">Bar</p>
+    </div>
+*/
+.kb-column {
+    min-width: 200px;
 }
-.item {
+
+/* Item
+
+    <div class="kb-column">
+        <div class="kb-column__item">foo</div>
+        <div class="kb-column__item">foo</div>
+        <div class="kb-column__item">foo</div>
+    </div>
+*/
+.kb-column__item {
     border-bottom: 1px solid #ddd;
     padding: 10px;
     box-sizing: border-box;
 }
 
-.dont-shrink {
-    flex-shrink: 0;
-    -webkit-flex-shrink: 0;
-}
-.column-header {
+/* Kanban column header
+
+    <h1 class="kb-column__header">
+        <span class="kb-column__title">Backlog</span>
+    </h1>
+*/
+.kb-column__header {
     background-color: #ddd;
     border-right: 1px solid white;
 }
-.title {
+
+.kb-column__title {
     text-transform: uppercase;
-    flex-grow: 1;
-    -webkit-flex-grow: 1;
+}
+
+.kb-column__border {
+    border-right: 1px solid #ddd;
+}
+.kb-column:last-child .kb-column__border {
+    border-right: none;
 }
 
 .scrollable {
     overflow: auto;
-    flex-grow: 1;
-    -webkit-flex-grow: 1;
-    border-right: 1px solid #ddd;
 }
 
+/* #Bug
+    <div class="bug">
+        I'm a bug
+    </div>
+*/
 .bug {
     height: 100px;
 }
 
-.blocked {
+/*
+    <div class="bug bug--blocked">
+        I'm a bug
+    </div>
+*/
+.bug--blocked {
     transition: background-color 1s ease;
     background-color: hsl(0, 50%, 75%);
 }
 
+
+/* #Overlay
+    <div class="overlay">
+        <p>Loading…</p>
+    </div>
+*/
 .overlay {
     position: absolute;
     top: 0;
@@ -90,6 +141,13 @@ a {
     bottom: 0;
     left: 0;
     background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Center
+
+    <div class="center" style="height: 100%;">Yeah, I'm horizontally and vertically centered</div>
+*/
+.center {
     display: flex;
     display: -webkit-flex;
     justify-content: center;
@@ -98,13 +156,19 @@ a {
     -webkit-align-items: center;
 }
 
+/* Pulse animation
+
+   0.99 is here to not change the stacking context
+
+    <p class="pulse">Loading…</p>
+ */
 @keyframes pulse {
-    0% { opacity: 1; }
+    0% { opacity: 0.99; }
     100% { opacity: 0; }
 }
 
 @-webkit-keyframes pulse {
-    0% { opacity: 1; }
+    0% { opacity: 0.99; }
     100% { opacity: 0; }
 }
 
