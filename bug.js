@@ -5,9 +5,9 @@
 
     var Bug = function(raw_bug) {
         this.raw_bug = raw_bug;
-        this.status = (this.raw_bug.status === 'RESOLVED') ? 'Done' : 'Backlog';
         this.node = null;
         this.tags = [];
+        this.column = null;
 
         var that = this;
         var promise;
@@ -47,8 +47,15 @@
                 });
             });
         }
+
         create_node();
-        gather_comments();
+
+        // Let's dump the bugs that have been closed without code
+        if (['WORKSFORME', 'INVALID', 'DUPLICATE'].indexOf(that.raw_bug.resolution) !== -1) {
+          promise = Promise.resolve(that);
+        } else {
+          gather_comments();
+        }
 
         return promise;
     };

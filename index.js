@@ -47,6 +47,10 @@
                     var bug = values[0];
                     var columns = values[1];
 
+                    if (!bug.column) {
+                      console.warn('Bug ', bug_object.id, ' was discarded because it was resolved without code');
+                      return;
+                    }
                     if (!columns[bug.column]) {
                         console.warn('Bug ', bug_object.id, ' uses a bad tag: ', bug.column);
                         return;
