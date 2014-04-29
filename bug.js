@@ -30,18 +30,14 @@
                     }
 
                     that.column = 'Backlog';
-                    if (that.raw_bug.status === 'RESOLVED') {
-                        that.column = (that.raw_bug.resolution === 'VERIFIED') ? 'Done' : 'QA';
-                    } else {
-                        that.tags.some(function(tag) {
-                            var regexp = /kanban-(.+)/.exec(tag);
-                            if (regexp) {
-                                that.column = regexp[1];
-                                return true;
-                            }
-                            return false;
-                        });
-                    }
+                    that.tags.some(function(tag) {
+                        var regexp = /kanban-(.+)/.exec(tag);
+                        if (regexp) {
+                            that.column = regexp[1];
+                            return true;
+                        }
+                        return false;
+                    });
 
                     resolve(that);
                 });
@@ -52,9 +48,15 @@
 
         // Let's dump the bugs that have been closed without code
         if (['WORKSFORME', 'INVALID', 'DUPLICATE'].indexOf(that.raw_bug.resolution) !== -1) {
-          promise = Promise.resolve(that);
+            promise = Promise.resolve(that);
+        } else if (that.raw_bug.status === 'RESOLVED') {
+            that.column = 'QA';
+            promise = Promise.resolve(that);
+        } else if (that.raw_bug.status === 'VERIFIED') {
+            that.column = 'Done';
+            promise = Promise.resolve(that);
         } else {
-          gather_comments();
+            gather_comments();
         }
 
         return promise;
