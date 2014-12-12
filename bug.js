@@ -49,6 +49,9 @@
         // Let's dump the bugs that have been closed without code
         if (['WORKSFORME', 'INVALID', 'DUPLICATE'].indexOf(that.raw_bug.resolution) !== -1) {
             promise = Promise.resolve(that);
+        } else if (that.raw_bug.status === 'ASSIGNED') {
+            that.column = 'Assigned';
+            promise = Promise.resolve(that);
         } else if (that.raw_bug.status === 'RESOLVED') {
             that.column = 'QA';
             promise = Promise.resolve(that);

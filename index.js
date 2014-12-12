@@ -64,6 +64,7 @@
     function extract_columns(bug) {
         var column_names = [
             {name: 'Backlog', order: 0},
+            {name: 'Assigned', order: 998},
             {name: 'QA', order: 999},
             {name: 'Done', order: 1000}
         ];
